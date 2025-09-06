@@ -16,7 +16,10 @@ export class HomePage extends BasePage {
 
   goToShop() {
     cy.logStep('Navigating to Shop page');
-    this.clickElement(this.shopLink);
+    // Use first() to handle multiple matches or be more specific
+    cy.get(this.shopLink).first().click();
+    // Alternative approach:
+    // cy.contains('a', 'Shop').click();
     cy.url().should('contain', 'shop');
     return this;
   }
