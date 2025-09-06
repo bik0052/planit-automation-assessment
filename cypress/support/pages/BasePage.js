@@ -21,14 +21,14 @@ export class BasePage {
     return this;
   }
 
-  typeText(selector, text) {
-    this.getElement(selector)
-      .scrollIntoView({ offset: { top: -100, left: 0 } })
-      .should('be.visible')
-      .clear()
-      .type(text);
-    return this;
-  }
+typeText(selector, text) {
+  this.getElement(selector)
+    .scrollIntoView({ offset: { top: -100, left: 0 } })
+    .should('be.visible')
+    .clear({ force: true })  // Add { force: true } here
+    .type(text, { force: true });  // Add { force: true } here too
+  return this;
+}
 
   verifyElementVisible(selector) {
     this.getElement(selector).should('be.visible');
