@@ -14,12 +14,19 @@ export class BasePage {
   }
 
   clickElement(selector) {
-    this.getElement(selector).should('be.visible').click();
+    this.getElement(selector)
+      .scrollIntoView({ offset: { top: -100, left: 0 } })
+      .should('be.visible')
+      .click();
     return this;
   }
 
   typeText(selector, text) {
-    this.getElement(selector).should('be.visible').clear().type(text);
+    this.getElement(selector)
+      .scrollIntoView({ offset: { top: -100, left: 0 } })
+      .should('be.visible')
+      .clear()
+      .type(text);
     return this;
   }
 
