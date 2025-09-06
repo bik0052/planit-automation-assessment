@@ -1,0 +1,33 @@
+{
+  "name": "planit-automation-assessment",
+  "version": "1.0.0",
+  "description": "Automated test suite for Planit Technical Assessment",
+  "scripts": {
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "cy:run:chrome": "cypress run --browser chrome",
+    "cy:run:headed": "cypress run --headed",
+    "test": "cypress run",
+    "test:contact": "cypress run --spec 'cypress/e2e/contact-*.cy.js'",
+    "test:shopping": "cypress run --spec 'cypress/e2e/shopping-cart.cy.js'",
+    "test:reliability": "npm run test:contact -- --repeat 5",
+    "generate:report": "npx mochawesome-merge cypress/reports/*.json -o cypress/reports/merged-report.json && npx marge cypress/reports/merged-report.json -f final-report -o cypress/reports"
+  },
+  "devDependencies": {
+    "cypress": "^13.6.0",
+    "wait-on": "^7.2.0",
+    "cypress-mochawesome-reporter": "^3.8.2",
+    "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^4.3.0",
+    "mochawesome-report-generator": "^6.2.0"
+  },
+  "keywords": [
+    "cypress",
+    "automation",
+    "testing",
+    "e2e",
+    "planit"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}
