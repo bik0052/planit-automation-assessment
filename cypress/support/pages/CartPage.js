@@ -30,10 +30,11 @@ export class CartPage extends BasePage {
     
     this.getCartItems().each($row => {
       const rowText = $row.text();
-      const priceMatches = rowText.match(/\$(\d+\.?\d*)/g);
+      const subtotalMatch = rowText.match(/\$(\d+\.?\d*)/g);
       
-      if (priceMatches && priceMatches.length > 0) {
-        const subtotalStr = priceMatches[priceMatches.length - 1].replace('$', '');
+      if (subtotalMatch && subtotalMatch.length > 0) {
+        const subtotalStr = subtotalMatch[subtotalMatch.length - 1].replace('
+}, '');
         const subtotal = parseFloat(subtotalStr);
         
         if (!isNaN(subtotal)) {
@@ -41,9 +42,9 @@ export class CartPage extends BasePage {
         }
       }
     }).then(() => {
-      cy.log(`Calculated total: $${calculatedTotal.toFixed(2)}`);
+      cy.log(`Calculated total: ${calculatedTotal.toFixed(2)}`);
       cy.contains('Total').should('be.visible');
-      cy.contains(`$${calculatedTotal.toFixed(2)}`).should('be.visible');
+      cy.contains(`${calculatedTotal.toFixed(2)}`).should('be.visible');
     });
     
     return this;
